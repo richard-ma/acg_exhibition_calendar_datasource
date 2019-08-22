@@ -7,6 +7,7 @@
 
 from acg_exhibition_calendar_datasource.helpers import DBHelper, SettingsHelper
 from acg_exhibition_calendar_datasource.models import Exhibition
+from sqlalchemy import and_
 
 
 class AcgExhibitionCalendarDatasourcePipeline(object):
@@ -14,8 +15,12 @@ class AcgExhibitionCalendarDatasourcePipeline(object):
         self.session = DBHelper().get_session()
 
     def process_item(self, item, spider):
-        self.session.add(Exhibition(**item))
-        self.session.commit()
+        check = self.session.query(Exhibition).\
+                filter(and_(Exhibition.code==item['code'], Exhibition.source==item['source'])).\
+                all()
+        if len(check) == 0:
+            self.session.add(Exhibition(**item))
+            self.session.commit()
 
     def close_spider(self, spider):
         self.session.close()
