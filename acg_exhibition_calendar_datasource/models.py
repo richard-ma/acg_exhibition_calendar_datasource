@@ -15,6 +15,7 @@ class Exhibition(Base):
     address = Column(String(128))
     city = Column(String(64))
     url = Column(String(256))
+    check_id = Column(String(64), unique=True)
 
     def __init__(self, **items):
         for key in items:
