@@ -27,11 +27,18 @@ class BilibiliSpider(scrapy.Spider):
             item['source'] = BilibiliSpider.name
             item['code'] = d['id']
             item['name'] = d['project_name']
-            item['start_time'] = d['start_time']
-            item['end_time'] = d['end_time']
             item['address'] = d['venue_name']
             item['city'] = d['city_name']
             item['url'] = d['url']
+
+            item['start_time'] = d['start_time']
+            start_time = d['start_time'].split('.')
+            end_time = d['end_time'].split('.')
+            if int(end_time[0]) < int(start_time[1]):
+                result_end_time = str(int(start_time[0])+1) + '.' + d['end_time']
+            else:
+                result_end_time = str(int(start_time[0])) + '.' + d['end_time']
+            item['end_time'] = result_end_time
 
             yield item
 
