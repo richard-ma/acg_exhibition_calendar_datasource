@@ -8,13 +8,14 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import os
 
 BOT_NAME = 'acg_exhibition_calendar_datasource'
 
 SPIDER_MODULES = ['acg_exhibition_calendar_datasource.spiders']
 NEWSPIDER_MODULE = 'acg_exhibition_calendar_datasource.spiders'
 
-CONNECTION_STRING = 'mysql://yczie35throqjksb:axxjzlgoo7er9md5@wvulqmhjj9tbtc1w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/h9vxcc4vkz8x6zz2'
+CONNECTION_STRING = os.environ['JAWSDB_URL']
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'acg_exhibition_calendar_datasource (+http://www.yourdomain.com)'
