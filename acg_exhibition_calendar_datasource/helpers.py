@@ -6,7 +6,7 @@ from acg_exhibition_calendar_datasource.models import Base
 
 class DBHelper():
     def __init__(self):
-        self.engine = create_engine(SettingsHelper().get_setting('CONNECTION_STRING'), encoding="utf-8", echo=True)
+        self.engine = create_engine(SettingsHelper().get_setting('CONNECTION_STRING'), convert_unicode=True, echo=True)
         self.DBSession = sessionmaker(bind=self.engine)
         Base.metadata.create_all(self.engine)
 
