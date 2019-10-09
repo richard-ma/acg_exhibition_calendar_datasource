@@ -8,6 +8,7 @@ class DBHelper():
     def __init__(self):
         self.engine = create_engine(SettingsHelper().get_setting('CONNECTION_STRING'), echo=True)
         self.DBSession = sessionmaker(bind=self.engine)
+        Base.metadata.drop_all(self.engine)
         Base.metadata.create_all(self.engine)
 
     def get_session(self):
