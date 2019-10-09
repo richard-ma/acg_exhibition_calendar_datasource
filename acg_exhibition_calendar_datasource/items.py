@@ -18,4 +18,5 @@ class AcgExhibitionCalendarDatasourceItem(scrapy.Item):
     address = scrapy.Field()
     city = scrapy.Field()
     url = scrapy.Field()
+    required_number = scrapy.Field()
     check_id = scrapy.Field()
