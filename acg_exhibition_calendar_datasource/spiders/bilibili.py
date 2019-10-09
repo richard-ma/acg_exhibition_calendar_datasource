@@ -30,6 +30,7 @@ class BilibiliSpider(scrapy.Spider):
             item['address'] = d['venue_name']
             item['city'] = d['city_name']
             item['url'] = d['url']
+            item['required_number'] = d['required_number']
             item['check_id'] = item['source'] + str(item['code'])
 
             item['start_time'] = d['start_time']
